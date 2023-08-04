@@ -1,0 +1,32 @@
+services:
+  web: 
+    build:
+      context: .
+    ports: 
+      - '8000:8000'
+    container_name: dpdzero_assignment
+    environment:
+      DB_NAME: postgres
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_PORT: 5432
+      DB_HOST: postgres
+    depends_on:
+      - postgres
+  postgres:
+    image: postgres
+    container_name: postgres
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
+
+
+
+volumes:
+  postgres_data:
